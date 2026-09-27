@@ -33,8 +33,9 @@ cur.execute("CREATE TABLE members ("
 cur.execute("DROP TABLE IF EXISTS attendance CASCADE;")
 cur.execute("CREATE TABLE attendance ("
             "member_id INTEGER REFERENCES members(id) ON DELETE CASCADE,"
-            "date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
-            "broughtbakedgood BOOLEAN DEFAULT FALSE NOT NULL)")
+            "meeting_date DATE NOT NULL,"
+            "date_submitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
+            "brought_baked_good BOOLEAN DEFAULT FALSE NOT NULL)")
 
 username = "admin"
 password = "09jJ2f)H)UOX"

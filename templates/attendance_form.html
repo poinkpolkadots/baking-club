@@ -1,0 +1,20 @@
+{% extends base.html %}
+{% block title %}Attendance{% endblock %}
+{% block content %}
+<form method="POST">
+    <label for="meeting-date">What date was the meeting?</label>
+    <input type="date" name="meeting-date" id="meeting-date">
+    <br>
+    <p>Did you bring anything?</p>
+    <input type="radio" name="brought-baked-good" id="yes" value="true">
+    <label for="yes">Yes</label>
+    <input type="radio" name="brought-baked-good" id="no" value="false">
+    <label for="no">No</label>
+    <br>
+    <!-- make javascript file that makes following input appear after yes has been clicked -->
+    <label for="baked-good">What did you bring</label>
+    <input type="text" name="baked-good" id="baked-good">
+    <br>
+    <button type="Submit">Submit Attendance</button>
+</form>
+{% endblock %}

@@ -31,3 +31,11 @@ def get_user_from_username(username):
     cur.close()
     conn.close()
     return user
+
+def log_attendance(date, brought_baked_goods, baked_good):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO attendance (meeting_date, brought_baked_good)")
+    conn.commit()
+    cur.close()
+    conn.close()

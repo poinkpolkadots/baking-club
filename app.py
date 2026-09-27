@@ -1,3 +1,8 @@
+# to do:
+# add ability for users to create account
+# add ability for admin to add people
+# add ability for users to see their own status as well as admins to see all statuses
+
 from flask import Flask, redirect, url_for, render_template, request, flash, send_file, session, Response, jsonify
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 from model import *
@@ -77,6 +82,22 @@ def logout():
 @login_required
 def index():
     return render_template("index.html")
+
+@app.route("/attendance" , methods=("GET", "POST"))
+@login_required
+def attendance():
+    if request.method == "POST":
+        date = request.form["meeting-date"]
+        brought_baked_goods = request.form["brought-baked-goods"]
+        print(brought_baked_goods)
+        baked_good = request.form["baked-good"]
+
+        if baked_good:
+            log_attendance(date, brought_baked_goods, "")
+        else:
+            log_attendance(date, brought_baked_goods, baked_good)
+    if request.method == "GET":
+        return render_template("attendance_form.html")
 
 # Run application
 if __name__ == "__main__":
