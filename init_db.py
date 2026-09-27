@@ -16,26 +16,27 @@ cur.execute("DROP TABLE IF EXISTS users CASCADE;")
 cur.execute("CREATE TABLE users ("
             "id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,"
             "username VARCHAR(50) UNIQUE NOT NULL,"
+            "name TEXT,"
             "password_hash VARCHAR(128) NOT NULL,"
             "isadmin BOOLEAN DEFAULT FALSE,"
             "isreadonly BOOLEAN DEFAULT TRUE,"
             "email TEXT,"
+            "isingoodstanding BOOLEAN DEFAULT TRUE NOT NULL,"
+            # add constraint for name so that if user is admin it has to be blank but not otherwise
+            "CONSTRAINT name_ck "
+            "   CHECK ((isadmin = TRUE AND (name IS NULL OR name = '')) OR (isadmin = FALSE AND (name IS NOT NULL AND name <> ''))),"
             "CONSTRAINT perm_ck "
             "   CHECK ((isadmin = TRUE AND isreadonly = TRUE ) = FALSE)"
             ");")
 
-cur.execute("DROP TABLE IF EXISTS members CASCADE;")
-cur.execute("CREATE TABLE members ("
-            "id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,"
-            "name TEXT NOT NULL,"
-            "isingoodstanding BOOLEAN DEFAULT TRUE NOT NULL)")
-
 cur.execute("DROP TABLE IF EXISTS attendance CASCADE;")
 cur.execute("CREATE TABLE attendance ("
-            "member_id INTEGER REFERENCES members(id) ON DELETE CASCADE,"
+            "member_id INTEGER REFERENCES users(id) ON DELETE CASCADE,"
             "meeting_date DATE NOT NULL,"
             "date_submitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
-            "brought_baked_good BOOLEAN DEFAULT FALSE NOT NULL)")
+            "brought_baked_good BOOLEAN DEFAULT FALSE NOT NULL,"
+            "baked_good TEXT"
+            ")")
 
 username = "admin"
 password = "09jJ2f)H)UOX"

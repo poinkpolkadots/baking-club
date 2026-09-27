@@ -13,8 +13,11 @@
     <!-- Top Navigation -->
     <nav>
         {% if current_user.is_authenticated %} <p>Hello, {{ current_user.username }}!</p> <a href="{{ url_for('logout') }}">Logout</a>{% endif %}
-        {% if not current_user.is_authenticated %} <a href="{{ url_for('login') }}">Login</a> {% endif %}
-        {% if current_user.is_readonly %}<a href="{{ url_for('attendance') }}">Log Attendance</a>{% endif %}
+        {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('new_account') }}">Create Account</a>
+        {% endif %}
+        {% if current_user.isreadonly %}<a href="{{ url_for('attendance') }}">Log Attendance</a>{% endif %}
     </nav>
     <!-- Main Page Content -->
     <main>
