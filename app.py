@@ -1,6 +1,5 @@
 # to do:
-# add ability for users to create account
-# add ability for admin to add people
+# add ability for admin to add people/edit accounts to some extent (no passwords probably)
 # add ability for users to see their own status as well as admins to see all statuses
 # add ability to reset password
 
@@ -26,7 +25,6 @@ class User(UserMixin):
         isadmin,
         isreadonly,
         email,
-        isingoodstanding,
     ):
         self.id = id
         self.username = username
@@ -35,7 +33,6 @@ class User(UserMixin):
         self.isadmin = isadmin
         self.isreadonly = isreadonly
         self.email = email
-        self.isingoodstanding = isingoodstanding
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -50,7 +47,6 @@ def load_user(user_id):
             isadmin=user[4],
             isreadonly=user[5],
             email=user[6],
-            isingoodstanding=user[7],
         )
 
     return None
@@ -73,7 +69,6 @@ def login():
                 isadmin=user[4],
                 isreadonly=user[5],
                 email=user[6],
-                isingoodstanding=user[7],
             )
             login_user(user_obj)
 

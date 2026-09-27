@@ -17,7 +17,7 @@ def get_db_connection():
 def get_user(user_id):
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+    cur.execute("SELECT (id, username, name, password_hash, isadmin, isreadonly, email) FROM users WHERE id = %s", (user_id,))
     data = cur.fetchone()
     cur.close()
     conn.close()
@@ -34,7 +34,7 @@ def create_user(username, name, password_hash, email):
 def get_user_from_username(username):
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM users WHERE username = %s", (username,))
+    cur.execute("SELECT (id, username, name, password_hash, isadmin, isreadonly, email) FROM users WHERE username = %s", (username,))
     user = cur.fetchone()
     cur.close()
     conn.close()
