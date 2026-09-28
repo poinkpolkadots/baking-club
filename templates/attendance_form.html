@@ -2,9 +2,11 @@
 {% block title %}Attendance{% endblock %}
 {% block content %}
 <form method="POST">
-    <label for="meeting-date">What date was the meeting?</label>
-    <input type="date" name="meeting-date" id="meeting-date" required>
-
+    <fieldset>
+        <legend>What date was the meeting?</legend>
+        <input type="date" name="meeting-date" id="meeting-date" required>
+    </fieldset>
+    <br>
     <fieldset>
         <legend>Did you bring anything?</legend>
             <input type="radio" name="brought-baked-good" value="true" required>
@@ -12,12 +14,12 @@
             <input type="radio" name="brought-baked-good" value="false">
             <label>No</label>
     </fieldset>
-
     <div id="baked-good-section" hidden>
+        <br>
         <label for="baked-good">What did you bring?</label>
         <input type="text" name="baked-good" id="baked-good" disabled>
     </div>
-
+    <br>
     <button type="submit">Submit Attendance</button>
 </form>
 
