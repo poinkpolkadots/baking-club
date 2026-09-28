@@ -3,17 +3,23 @@
 {% block content %}
 <form method="POST">
     <label for="meeting-date">What date was the meeting?</label>
-    <input type="date" name="meeting-date" id="meeting-date">
-    <br>
-    <!-- need to change this to have a form inside this form -->
-    <p>Did you bring anything?</p>
-    <input type="radio" name="brought-baked-good" id="yes" value="true">Yes</input>
-    <input type="radio" name="brought-baked-good" id="no" value="false">No</input>
-    <br>
-    <!-- make javascript file that makes following input appear after yes has been clicked -->
-    <label for="baked-good" class="baked-good">What did you bring</label>
-    <input type="text" class="baked-good" name="baked-good" id="baked-good">
-    <br>
-    <button type="Submit">Submit Attendance</button>
+    <input type="date" name="meeting-date" id="meeting-date" required>
+
+    <fieldset>
+        <legend>Did you bring anything?</legend>
+            <input type="radio" name="brought-baked-good" value="true" required>
+            <label>Yes</label>
+            <input type="radio" name="brought-baked-good" value="false">
+            <label>No</label>
+    </fieldset>
+
+    <div id="baked-good-section" hidden>
+        <label for="baked-good">What did you bring?</label>
+        <input type="text" name="baked-good" id="baked-good" disabled>
+    </div>
+
+    <button type="submit">Submit Attendance</button>
 </form>
+
+<script src="{{ url_for('static', filename='attendance.js') }}" defer></script>
 {% endblock %}

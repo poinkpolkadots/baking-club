@@ -114,6 +114,7 @@ def attendance():
             log_attendance(current_user.id, date, brought_baked_goods, baked_good)
         else:
             log_attendance(current_user.id, date, brought_baked_goods, "")
+        flash("Attendance logged!", "success")
         return redirect(url_for("index"))
     if request.method == "GET":
         return render_template("attendance_form.html")
