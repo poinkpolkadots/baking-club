@@ -1,5 +1,5 @@
 # to do:
-# add ability for admin to add people/edit accounts to some extent (no passwords probably)
+# add ability for admin to add people/edit accounts to some extent (no passwords)
 # add ability for users to see their own status as well as admins to see all statuses
 # add ability to reset password
 
@@ -59,6 +59,7 @@ def login():
         password = request.form["password"]
 
         user = get_user_from_username(username)
+        print(user)
 
         if user and bcrypt.check_password_hash(user[3], password):
             user_obj = User(
@@ -100,11 +101,6 @@ def logout():
 @app.route("/")
 @login_required
 def index():
-    cur = get_db_connection().cursor()
-    cur.execute("SELECT * FROM attendance")
-    print(cur.fetchall())
-    cur.execute("SELECT * FROM users")
-    print(cur.fetchall())
     return render_template("index.html")
 
 @app.route("/attendance" , methods=("GET", "POST"))
