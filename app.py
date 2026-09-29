@@ -109,8 +109,8 @@ def attendance():
     if request.method == "POST":
         date = request.form["meeting-date"]
         brought_baked_goods = request.form.getlist("brought-baked-good")[0]
-        baked_good = request.form["baked-good"]
-        if baked_good:
+        if "baked-good" in request.form:
+            baked_good = request.form["baked-good"]
             log_attendance(current_user.id, date, brought_baked_goods, baked_good)
         else:
             log_attendance(current_user.id, date, brought_baked_goods, "")

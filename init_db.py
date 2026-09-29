@@ -21,10 +21,7 @@ cur.execute("CREATE TABLE users ("
             "isadmin BOOLEAN DEFAULT FALSE,"
             "isreadonly BOOLEAN DEFAULT TRUE,"
             "email TEXT,"
-            "isingoodstanding BOOLEAN DEFAULT TRUE NOT NULL,"
             # add constraint for name so that if user is admin it has to be blank but not otherwise
-            "CONSTRAINT name_ck "
-            "   CHECK ((isadmin = TRUE AND (name IS NULL OR name = '')) OR (isadmin = FALSE AND (name IS NOT NULL AND name <> ''))),"
             "CONSTRAINT perm_ck "
             "   CHECK ((isadmin = TRUE AND isreadonly = TRUE ) = FALSE)"
             ");")

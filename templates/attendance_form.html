@@ -16,12 +16,12 @@
     </fieldset>
     <div id="baked-good-section" hidden>
         <br>
-        <label for="baked-good">What did you bring?</label>
-        <input type="text" name="baked-good" id="baked-good" disabled>
+        <fieldset>
+            <legend>What did you bring?</legend>
+            <input type="text" name="baked-good" id="baked-good" disabled>
+        </fieldset>        
     </div>
     <br>
     <button type="submit">Submit Attendance</button>
 </form>
-
-<script src="{{ url_for('static', filename='attendance.js') }}" defer></script>
 {% endblock %}
