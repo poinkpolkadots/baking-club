@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}View of {{  user_data[1] }}{% endblock %}
+{% block content %}
+<h1>{{ user_data[1] }}</h1>
+<p>Username: {{ user_data[2] }}</p>
+<p>Email: {{ user_data[3] }}</p>
+<p>Meetings Attended: {{ user_data[4] }}</p>
+<p>Things Brought: {{ user_data[5] }}</p>
+<table>
+    <thead>
+        <tr>
+            <th>Date Submitted</th>
+            <th>Meeting Date</th>
+            <th>Brought Baked Good?</th>
+            <th>Baked Good Brought</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for meeting in user_meetings %}
+        <tr>
+            <td>{{ meeting[1] }}</td>
+            <td>{{ meeting[0] }}</td>
+            <td>{{ meeting[2] }}</td>
+            <td>{{ meeting[3] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

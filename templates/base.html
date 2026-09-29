@@ -17,7 +17,13 @@
         <a href="{{ url_for('login') }}">Login</a>
         <a href="{{ url_for('new_account') }}">Create Account</a>
         {% endif %}
-        {% if current_user.isreadonly %}<a href="{{ url_for('attendance') }}">Log Attendance</a>{% endif %}
+        {% if current_user.isadmin %}
+        <a href="{{ url_for('member_view') }}">Member View</a>
+        {% endif %}
+        {% if current_user.isreadonly %}
+        <a href="{{ url_for('profile') }}">Profile</a>
+        <a href="{{ url_for('attendance') }}">Log Attendance</a>
+        {% endif %}
     </nav>
     <!-- Main Page Content -->
     <main>

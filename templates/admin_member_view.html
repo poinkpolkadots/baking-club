@@ -4,4 +4,22 @@
 <!-- table generated with for loop -->
 <!-- colums: name, status, meetings attended -->
 <!-- each row will link to an individual page to see meetings attended, email, etc. -->
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Meetings Attended</th>
+            <th>Things Brought</th>
+        </tr>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[1] }}</a></td>
+            <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[2] }}</a></td>
+            <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[3] }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </thead>
+</table>
 {% endblock %}
