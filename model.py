@@ -102,3 +102,12 @@ def get_individual_meetings(user_id):
     cur.close()
     conn.close()
     return data
+
+def get_latest_brought(user_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT meeting_date FROM attendance WHERE brought_baked_good = 'true' AND member_id = %s ORDER BY date_submitted DESC LIMIT 1", (user_id,))
+    data = cur.fetchone()
+    cur.close()
+    conn.close()
+    return data

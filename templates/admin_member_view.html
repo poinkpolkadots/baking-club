@@ -2,7 +2,7 @@
 {% block title %}Member Status View{% endblock %}
 {% block content %}
 <!-- table generated with for loop -->
-<!-- colums: name, status, meetings attended -->
+<!-- columns: name, status, meetings attended -->
 <!-- each row will link to an individual page to see meetings attended, email, etc. -->
 <table>
     <thead>
@@ -10,13 +10,15 @@
             <th>Name</th>
             <th>Meetings Attended</th>
             <th>Things Brought</th>
+            <th>Latest Meeting Something was Brought</th>
         </tr>
     <tbody>
         {% for user in users %}
         <tr>
             <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[1] }}</a></td>
             <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[2] }}</a></td>
-            <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[3] }}</a></td>
+            <td class="baked-goods-brought"><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[3] }}</a></td>
+            <td class="latest-meeting"><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user_dates[loop.index0][0] }}</a></td>
         </tr>
         {% endfor %}
     </tbody>

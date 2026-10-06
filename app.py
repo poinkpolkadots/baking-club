@@ -59,7 +59,6 @@ def login():
         password = request.form["password"]
 
         user = get_user_from_username(username)
-        print(user)
 
         if user and bcrypt.check_password_hash(user[3], password):
             user_obj = User(
@@ -110,7 +109,6 @@ def profile():
     user_meetings = get_individual_meetings(current_user.id)
     return render_template("profile.html", user_data=user_data, user_meetings=user_meetings)
 
-
 @app.route("/attendance" , methods=("GET", "POST"))
 @login_required
 def attendance():
@@ -134,10 +132,19 @@ def member_view():
         flash("You do not have permission to view this page.", "danger")
         return redirect(url_for("index"))
     user_status = generate_all_user_status()
+    user_dates = []
     for user in user_status:
         if user[0] == 1:
             user_status.remove(user)
-    return render_template("admin_member_view.html", users = user_status)
+    for user in user_status:
+        user_dates.append(get_latest_brought(user[0]))
+    for i in range(len(user_dates)):
+        if user_dates[i] == None:
+            set = ["Nothing has been brought!"]
+            user_dates[i] = set
+    print(user_dates)
+    
+    return render_template("admin_member_view.html", users = user_status, user_dates = user_dates)
 
 @app.route("/individual-view/<int:user_id>")
 @login_required
