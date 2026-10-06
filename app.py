@@ -1,5 +1,6 @@
 # to do:
 # add ability for admin to add people/edit accounts to some extent (no passwords)
+# add ability for users to edit their information on profile page
 # add ability to reset password
 
 from flask import Flask, redirect, url_for, render_template, request, flash, send_file, session, Response, jsonify
