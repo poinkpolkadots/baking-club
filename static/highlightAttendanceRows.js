@@ -7,10 +7,10 @@ function highlightAttendanceRows() {
     }
 
     const latestMeetingCells = document.querySelectorAll(".latest-meeting");
-    const present = new Date()
+    const present = new Date().getMonth()
     for (const cell of latestMeetingCells) {
-        const cellDate = new Date(cell.innerText);
-        if ((Math.abs(present.getMonth() - cellDate.getMonth() > 3)) || cell.innerText === "Nothing has been brought!") {
+        const cellDate = new Date(cell.innerText).getMonth();
+        if ((Math.abs(present - cellDate > 3)) || cell.innerText === "Nothing has been brought!") {
             cell.style.backgroundColor = "red"; // later change to using variables
         }
     }

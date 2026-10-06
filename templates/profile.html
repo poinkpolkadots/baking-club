@@ -2,11 +2,13 @@
 {% block title %}My Profile{% endblock %}
 {% block content %}
 <h1>Hello, {{ current_user.name }}!</h1>
+<p id="status"></p>
 <!-- make these into forms -->
 <p>Username: {{ current_user.username }}</p>
 <p>Email: {{ current_user.email }}</p>
 <p>Meetings Attended: {{ user_data[4] }}</p>
-<p>Things Brought: {{ user_data[5] }}</p>
+<p class="status">Things Brought: {{ user_data[5] }}</p>
+<p class="status">Last Time You Brought Something: {{ latest_brought[0] if latest_brought else "You haven't brought anything yet!" }}</p>
 <table>
     <thead>
         <tr>

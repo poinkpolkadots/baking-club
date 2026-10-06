@@ -1,6 +1,5 @@
 # to do:
 # add ability for admin to add people/edit accounts to some extent (no passwords)
-# add ability for users to see their own status
 # add ability to reset password
 
 from flask import Flask, redirect, url_for, render_template, request, flash, send_file, session, Response, jsonify
@@ -107,7 +106,8 @@ def index():
 def profile():
     user_data = get_individual_data(current_user.id)
     user_meetings = get_individual_meetings(current_user.id)
-    return render_template("profile.html", user_data=user_data, user_meetings=user_meetings)
+    latest_brought = get_latest_brought(current_user.id)
+    return render_template("profile.html", user_data=user_data, user_meetings=user_meetings, latest_brought=latest_brought)
 
 @app.route("/attendance" , methods=("GET", "POST"))
 @login_required
@@ -142,7 +142,6 @@ def member_view():
         if user_dates[i] == None:
             set = ["Nothing has been brought!"]
             user_dates[i] = set
-    print(user_dates)
     
     return render_template("admin_member_view.html", users = user_status, user_dates = user_dates)
 
@@ -154,7 +153,8 @@ def individual_view(user_id):
         return redirect(url_for("index"))
     user_data = get_individual_data(user_id)
     user_meetings = get_individual_meetings(user_id)
-    return render_template("admin_individuals_view.html", user_data=user_data, user_meetings=user_meetings)
+    last_brought = get_latest_brought(user_id)
+    return render_template("admin_individuals_view.html", user_data=user_data, user_meetings=user_meetings, last_brought=last_brought)
 
 # Run application
 if __name__ == "__main__":
