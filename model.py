@@ -110,6 +110,14 @@ def get_individual_data(user_id):
     conn.close()
     return data
 
+def update_user_data(user_id, name, username, email):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("UPDATE users SET name = %s, username = %s, email = %s WHERE id = %s", (name, username, email, user_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+
 def get_individual_meetings(user_id):
     conn = get_db_connection()
     cur = conn.cursor()

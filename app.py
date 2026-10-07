@@ -103,13 +103,21 @@ def logout():
 def index():
     return render_template("index.html")
 
-@app.route("/profile")
+@app.route("/profile", methods=("GET", "POST"))
 @login_required
 def profile():
-    user_data = get_individual_data(current_user.id)
-    user_meetings = get_individual_meetings(current_user.id)
-    latest_brought = get_latest_brought(current_user.id)
-    return render_template("profile.html", user_data=user_data, user_meetings=user_meetings, latest_brought=latest_brought)
+    if request.method == "POST":
+        name = request.form["name"]
+        username = request.form["username"]
+        email = request.form["email"]
+        update_user_data(current_user.id, name, username, email)
+        flash("User data updated successfully", "success")
+        return redirect(url_for("index"))
+    if request.method == "GET":
+        user_data = get_individual_data(current_user.id)
+        user_meetings = get_individual_meetings(current_user.id)
+        latest_brought = get_latest_brought(current_user.id)
+        return render_template("profile.html", user_data=user_data, user_meetings=user_meetings, latest_brought=latest_brought)
 
 @app.route("/attendance" , methods=("GET", "POST"))
 @login_required
