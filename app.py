@@ -1,6 +1,5 @@
 # to do:
 # add ability for admin to add people/edit accounts to some extent (no passwords)
-# add ability for users to edit their information on profile page
 # add ability to reset password
 # style application with bootstrap
 
