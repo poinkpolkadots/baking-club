@@ -1,7 +1,6 @@
 # to do:
 # add ability for admin to add people/edit accounts to some extent (no passwords)
 # add ability to reset password
-# style application with bootstrap
 
 from flask import Flask, redirect, url_for, render_template, request, flash
 from flask_bcrypt import Bcrypt
