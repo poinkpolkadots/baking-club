@@ -1,17 +1,22 @@
 function highlightAttendanceRows() {
-    const broughtCells = document.querySelectorAll(".baked-goods-brought");
+    const broughtCells = document.getElementsByClassName("baked-goods-brought");
     for (const cell of broughtCells) {
         if (cell.innerText === "0") {
-            cell.style.backgroundColor = "red"; // later change to using variables
+            cell.style.backgroundColor = "var(--accent4)"; // later change to using variables
         }
     }
 
-    const latestMeetingCells = document.querySelectorAll(".latest-meeting");
-    const present = new Date().getMonth();
+    const latestMeetingCells = document.getElementsByClassName("latest-meeting");
     for (const cell of latestMeetingCells) {
-        const cellDate = new Date(cell.innerText).getMonth();
-        if ((Math.abs(present - cellDate) > 3) || cell.innerText === "Nothing has been brought!") {
-            cell.style.backgroundColor = "red"; // later change to using variables
+        if (cell.innerText === "Nothing has been brought!") {
+            cell.style.backgroundColor = "var(--accent4)"; // later change to using variables
+        }
+    }
+
+    const meetingsAttended = document.getElementsByClassName("meetings-attended");
+    for (const cell of meetingsAttended) {
+        if (cell.innerText ==="0") {
+            cell.style.backgroundColor = "var(--accent4)";
         }
     }
 }

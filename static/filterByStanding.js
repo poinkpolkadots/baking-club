@@ -1,9 +1,9 @@
 var filtered = false;
 const broughtCells = document.getElementsByClassName("baked-goods-brought");
 const latestMeetingCells = document.getElementsByClassName("latest-meeting");
+const meetingsAttended = document.getElementsByClassName("meetings-attended");
 const table = document.getElementById("table");
 const rows = table.rows;
-const present = new Date().getMonth();
 
 function filterByStanding() {
     if (filtered == true) {
@@ -18,7 +18,7 @@ function filterByStanding() {
 
         for (i = 0; i < latestMeetingCells.length; i++) {
             const cellDate = new Date(latestMeetingCells[i].innerText).getMonth();
-            if (!(broughtCells[i].innerText === "0" || ((Math.abs(present - cellDate) > 3) || broughtCells[i].innerText === "Nothing has been brought!"))) {
+            if (!(broughtCells[i].innerText === "0" || broughtCells[i].innerText === "Nothing has been brought!" || meetingsAttended[i].innerText === "0")) {
                 rows[i + 1].style.visibility = "hidden";
             }
         }

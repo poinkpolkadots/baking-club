@@ -101,7 +101,10 @@ def logout():
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    if (current_user.isadmin):
+        return redirect(url_for("member_view"))
+    else:
+        return redirect(url_for("attendance"))
 
 @app.route("/profile", methods=("GET", "POST"))
 @login_required

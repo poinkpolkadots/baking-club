@@ -17,7 +17,7 @@
         {% for user in users %}
         <tr>
             <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[1] }}</a></td>
-            <td><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[2] }}</a></td>
+            <td class="meetings-attended"><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[2] }}</a></td>
             <td class="baked-goods-brought"><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user[3] }}</a></td>
             <td class="latest-meeting"><a href="{{ url_for('individual_view', user_id=user[0]) }}">{{ user_dates[loop.index0][0] }}</a></td>
         </tr>

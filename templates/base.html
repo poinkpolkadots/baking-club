@@ -16,7 +16,6 @@
 <body>
     <!-- Top Navigation -->
     <nav>
-        {% if current_user.is_authenticated %} <p>Hello, {{ current_user.username }}!</p> <a href="{{ url_for('logout') }}">Logout</a>{% endif %}
         {% if not current_user.is_authenticated %}
         <a href="{{ url_for('login') }}">Login</a>
         <a href="{{ url_for('new_account') }}">Create Account</a>
@@ -28,7 +27,13 @@
         <a href="{{ url_for('profile') }}">Profile</a>
         <a href="{{ url_for('attendance') }}">Log Attendance</a>
         {% endif %}
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
     </nav>
+    {% if current_user.is_authenticated %}
+    <p id="intro">Hello, {{ current_user.username }}!</p>
+    {% endif %}
     <!-- Main Page Content -->
     <main>
         <div class="messages">
